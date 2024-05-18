@@ -1,0 +1,41 @@
+---
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: [ "--unsafe" ]
+      - id: check-added-large-files
+        args: [ "--maxkb=1024" ]
+      - id: check-ast
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+  - repo: local
+    hooks:
+      - id: ruff lint
+        name: ruff lint
+        entry: ruff check
+        args: [--force-exclude]
+        language: system
+        types:
+          - python
+      - id: ruff format
+        name: ruff format
+        args: [--check, --diff, --force-exclude]
+        entry: ruff format
+        language: system
+        types:
+          - python
+      - id: deptry
+        name: Check project dependencies
+        entry: deptry .
+        language: system
+        types: [python]
+        pass_filenames: false
