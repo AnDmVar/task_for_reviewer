@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "qa-tests"
+version = "0.1.0"
+description = ""
+authors = []
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pytest = "^8.2.0"
